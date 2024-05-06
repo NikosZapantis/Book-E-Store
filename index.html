@@ -13,8 +13,8 @@
 
     <div class="firstSelect-container">
         <div class="firstSelectOptions-container">
-            <button id="addBookBtn">Add a Book</button>
-            <button id="searchBookBtn">Search for a Book</button>
+            <button id="addBookBtn">Add New</button>
+            <button id="searchBookBtn">Search</button>
         </div>
     </div>
 
@@ -50,16 +50,20 @@
             <input type="number" id="price" min="0" step="0.01" placeholder="0.00" autocomplete="off">
             <br>
 
-            <button type="submit" id="submitBtn">Add book 📔</button>
+            <button type="submit" id="submitBtn" onclick="addBookToDatabase()">Add book 📔</button>
         </form>
     </div>
 
     <div id="searchBookSelected" style="display: none;">
         <input type="search" placeholder="Search here..." id="searchInput" autocomplete="off">
-        <button type="submit" id="searchBtn">
+        <button type="submit" id="searchBtn" onclick="searchBookToDatabase()">
             <i class="fas fa-search"></i>
         </button>     
     </div>
+
+    <footer>
+        <p>© 2024 it2022019's Book E-Store Application</p>
+    </footer>
 
     <script src="/src/bookstore.js"></script>
 </body>
