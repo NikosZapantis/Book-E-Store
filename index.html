@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>it2022019's Book Store</title>
+    <link rel="stylesheet" href="/src/bookstore.css">
+</head>
+<body>
+    <div class="firstSelect-container">
+        <div class="firstSelectOptions-container">
+            <button id="addBookBtn">Add a Book</button>
+            <button id="searchBookBtn">Search for a Book</button>
+        </div>
+    </div>
+
+    <div id="addBookSelected" style="display: none;">
+        <form class="addBookForm">
+            <input type="text" placeholder="Title">
+            <input type="text" placeholder="Author">
+            <input type="" placeholder="Genre">
+            <button type="submit">Add book</button>
+        </form>
+    </div>
+
+    <div id="searchBookSelected" style="display: none;">
+        <input type="search" placeholder="Search here...">
+        <button type="button">Search</button>
+    </div>
+
+    <script src="/src/bookstore.js"></script>
+</body>
+</html>
