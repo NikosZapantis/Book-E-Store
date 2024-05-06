@@ -1,5 +1,68 @@
 body {
     background-color: #191b28;
     color: rgb(248, 164, 6);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Times New Roman', Times, serif;
+    position: relative; 
+}
+
+h1 {
+    position: absolute;
+    text-align: center;
+    background-color: transparent;
+    border: solid 2px #050507;
+    border-radius: 25px;
+    width: 65%;
+    left: 20%;
+    top: 15%;
+    margin: auto;
+    box-shadow: 7px 10px 15px 7px rgba(0, 0, 0, 0.9);
+}
+
+/* Customization for the color of the placeholders */
+::placeholder {
+    color: rgb(248, 164, 6);
+}
+
+.firstSelect-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(25, 27, 40, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50%;
+    max-width: 600px;
+}
+
+.firstSelectOptions-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#addBookBtn, #searchBookBtn {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(248, 164, 6);
+    border: solid 2px black;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+#addBookBtn:hover, #searchBookBtn:hover {
+    background-color: rgb(218, 138, 0);
 }
