@@ -7,3 +7,7 @@ document.getElementById("searchBookBtn").addEventListener("click", function() {
     document.querySelector(".firstSelect-container").style.display = "none";
     document.getElementById("searchBookSelected").style.display = "block";
 });
+
+function redirectToMainPage() {
+    location.reload(); //reloading the page
+}

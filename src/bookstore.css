@@ -130,3 +130,24 @@ label {
     color: #19d210;
     background-color: transparent;
 }
+
+#return-to-main {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 15%;
+    height: 6%;
+    background-color: rgb(248, 164, 6);
+    padding: 6px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#return-to-main:hover {
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(248, 164, 6);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

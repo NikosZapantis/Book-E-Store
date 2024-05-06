@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>it2022019's Book Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Library is needed because I use the fa-home icon -->
     <link rel="stylesheet" href="/src/bookstore.css">
 </head>
 <body>
@@ -18,6 +19,11 @@
 
     <div id="addBookSelected" style="display: none;">
         <form class="addBookForm">
+            <button id="return-to-main" onclick="redirectToMainPage()">
+                <i class="fas fa-home"></i>
+            </button>
+        
+
             <label for="title">Title</label>
             <input type="text" id="title" placeholder="ex. (1922)">
             <br>
