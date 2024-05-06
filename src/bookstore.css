@@ -1,3 +1,9 @@
+/* Those sites were used for box-shadow generation and UI proposes, like colors, their palletes and icons */
+/* https://generators.shecodes.io/css-box-shadow-generator */
+/* https://uicolors.app/create */
+/* https://ionic.io/ionicons */
+/* https://fontawesome.com/icons/square-check?s=solid&f=classic */
+
 body {
     background-color: #191b28;
     color: rgb(248, 164, 6);
@@ -21,7 +27,7 @@ h1 {
     left: 20%;
     top: 15%;
     margin: auto;
-    box-shadow: 7px 10px 15px 7px rgba(0, 0, 0, 0.9);
+    box-shadow: 7px 10px 15px 7px rgba(0, 0, 0, 0.9); 
 }
 
 /* Placeholder Customization */
