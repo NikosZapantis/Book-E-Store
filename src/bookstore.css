@@ -115,8 +115,8 @@ label {
     background-color: #19d210;
     color: black;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border-radius: 10px;
+    padding: 10px 40px;
     font-size: 16px;
     cursor: pointer;
     display: block;
@@ -124,5 +124,5 @@ label {
 }
 
 #submitBtn:hover {
-    background-color: ;
+    background-color: #0da808;
 }
