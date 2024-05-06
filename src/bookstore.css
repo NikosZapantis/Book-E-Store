@@ -10,6 +10,7 @@ body {
     position: relative; 
 }
 
+/* Headline Customization */
 h1 {
     position: absolute;
     text-align: center;
@@ -23,17 +24,19 @@ h1 {
     box-shadow: 7px 10px 15px 7px rgba(0, 0, 0, 0.9);
 }
 
-/* Customization for the color of the placeholders */
+/* Placeholder Customization */
 ::placeholder {
     color: rgb(248, 164, 6);
     font-size: small;
 }
 
+/* Label Customization */
 label {
     color:rgb(248, 164, 6);
     font-size: large;
 }
 
+/* Starting-Box Customization */
 .firstSelect-container, #addBookSelected {
     position: absolute;
     top: 60%;
@@ -51,12 +54,14 @@ label {
     box-shadow: 16px 24px 19px 3px rgba(0, 0, 0, 0.6);
 }
 
+/* Starting-Box Options Customization */
 .firstSelectOptions-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
+/* Starting-Box Buttons Customization */
 #addBookBtn, #searchBookBtn {
     position: relative;
     width: 200px;
@@ -78,6 +83,7 @@ label {
     color:rgb(248, 164, 6);
 }
 
+/* addBookForm inputs Customization */
 .addBookForm input {
     display: block;
     margin-bottom: 10px;
@@ -88,6 +94,13 @@ label {
     color:rgb(248, 164, 6);
     border-radius: 5px;
     background-color: transparent;
+    transition: 0.4s ease-in-out;
+}
+
+.addBookForm input:focus {
+    outline: none;
+    border-color: rgb(248, 164, 6);
+    box-shadow: 18px 16px 23px 5px rgba(0, 0, 0, 0.6);
 }
 
 #genre {
@@ -131,6 +144,7 @@ label {
     background-color: transparent;
 }
 
+/* Home Button Customization */
 #return-to-main {
     position: absolute;
     top: 3%;
@@ -150,4 +164,48 @@ label {
     color: rgb(248, 164, 6);
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Search Book-Box Customization */
+#searchBookSelected {
+    position: relative;
+}
+
+/* SearchBar Customization */
+#searchInput {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px 100px;
+    font-size: 16px;
+    border: 1px solid #050507;
+    border-radius: 15px;
+    color: rgb(248, 164, 6);
+    background-color: transparent;
+    transition: 0.4s ease-in-out;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: rgb(248, 164, 6);
+    box-shadow: 18px 16px 23px 5px rgba(0, 0, 0, 0.6);
+}
+
+#searchBtn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: rgb(248, 164, 6);
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.6s ease-in-out;
+}
+
+#searchBtn:hover {
+    color: black;
+    background-color: rgb(248, 164, 6); 
 }
