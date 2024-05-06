@@ -121,8 +121,12 @@ label {
     cursor: pointer;
     display: block;
     margin: 20px auto;
+    transition: 0.1s ease-in-out;
 }
 
 #submitBtn:hover {
-    background-color: #0da808;
+    border: 2px solid;
+    border-color: #19d210;
+    color: #19d210;
+    background-color: transparent;
 }
