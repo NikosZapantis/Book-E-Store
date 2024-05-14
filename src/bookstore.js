@@ -26,16 +26,16 @@ function redirectToMainPage() {
 function addBookToDatabase() {
     event.preventDefault(); //preventing from default actions of the browser
 
+    // Clearing input fields
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("genre").selectedIndex = 0; // Resetting select to default
+    document.getElementById("price").value = "";
+
     // Showing notification
     const notification = showNotification("The book has been succesfully added!");
     setTimeout(() => {
         hideNotification(notification);
-        
-        // Clearing input fields
-        document.getElementById("title").value = "";
-        document.getElementById("author").value = "";
-        document.getElementById("genre").selectedIndex = 0; // Resetting select to default
-        document.getElementById("price").value = "";
 
         // setTimeout(() => {
         //     location.reload();
