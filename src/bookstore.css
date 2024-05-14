@@ -284,6 +284,20 @@ label {
     z-index: 99999;
 }
 
+#closeButton {
+    display: none; /* Hide the close button by default */
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+}
+
+#closeButton:hover {
+    color: red;
+}
+
 .searchResultItem {
     margin-bottom: 10px;
 }

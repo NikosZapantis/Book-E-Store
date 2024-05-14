@@ -26,6 +26,27 @@ function redirectToMainPage() {
 function addBookToDatabase() {
     event.preventDefault(); //preventing from default actions of the browser
 
+    const currTitle = document.getElementById("title").value.trim();
+    const currAuthor = document.getElementById("author").value.trim();
+    const currGenre = document.getElementById("genre").value.trim();
+    const currPrice = document.getElementById("price").value.trim();
+
+    if(!currTitle || !currAuthor || !currGenre || !currPrice) {
+        alert("⚠️ Fill-in all the input fields before submitting. ⚠️");
+        
+        setTimeout(() => {
+            hideNotification(notification);
+        }, 3000); // Hide notification after 3 seconds
+
+        return;
+    }
+
+    if(/[^0-9.]/.test(currPrice)) {
+        alert("❌ Provide a correct price for the book you want to list! ❌");
+
+        return;
+    }
+
     // Clearing input fields
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
@@ -37,9 +58,6 @@ function addBookToDatabase() {
     setTimeout(() => {
         hideNotification(notification);
 
-        // setTimeout(() => {
-        //     location.reload();
-        // }, 50);
     }, 6000); // Hiding notification box after 6 seconds
 }
 
@@ -95,7 +113,7 @@ function displaySearchResults(res) {
     searchResultsBox.classList.add("visible");
 
     // Add event listener for the close button
-    const closeButton = document.getElementById("searchResults");
+    const closeButton = document.getElementById("searchResultsCloseBtn");
     closeButton.addEventListener("click", () => {
         searchResultsBox.classList.remove("visible");
     });
