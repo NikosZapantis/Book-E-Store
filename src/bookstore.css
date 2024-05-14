@@ -335,3 +335,14 @@ body::-webkit-scrollbar-thumb {
 .notification .close:hover {
     color: black;
 }
+
+/* Highlight customization */
+::selection {
+    color: #191b28;
+    background-color: rgb(248, 164, 6);
+}
+
+::-moz-selection {
+    color: #191b28;
+    background-color: rgb(248, 164, 6);
+}
