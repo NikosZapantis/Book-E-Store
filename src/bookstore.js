@@ -70,31 +70,34 @@ function searchBookToDatabase() {
 //? Function to display properly the data found by the search
 function displaySearchResults(res) {
     const searchResultsBox = document.getElementById("searchResultsBox");
-    searchResultsBox.innerHTML = ""; // Clearing previous data from search results
-
-    let specificBookCount = 0;
+    const searchResultsContent = document.getElementById("searchResultsContent");
+    searchResultsContent.innerHTML = ""; // Clear previous search results
 
     res.forEach((registerBook, index) => {
-        const registerBookItem = document.createElement("div"); // Create div element for each book
-        registerBookItem.classList.add("registerBookItem"); // Add class to div
-        registerBookItem.innerHTML = `${specificBookCount + 1}) ${registerBook.title}`; // Set content with counter
-        
-        // Add event listeners for mouse enter and leave
+        const registerBookItem = document.createElement("div");
+        registerBookItem.textContent = `${index + 1}. ${registerBook.title}`; // Prefix with index number
+        registerBookItem.classList.add("searchResultItem");
+
+        // Add event listener for displaying book details on hover
         registerBookItem.addEventListener("mouseenter", () => {
             displayBookDetailsOnHover(registerBook);
         });
+
+        // Add event listener to hide book details on mouse leave
         registerBookItem.addEventListener("mouseleave", () => {
             closePopupOnMouseLeave();
         });
-    
-        // Append div to the search results box
-        searchResultsBox.appendChild(registerBookItem);
 
-        if (index < res.length - 1) {
-            searchResultsBox.appendChild(document.createElement("br"));
-        }
-        
-        specificBookCount++ ;
+        searchResultsContent.appendChild(registerBookItem);
+    });
+
+    // Display the search results box
+    searchResultsBox.classList.add("visible");
+
+    // Add event listener for the close button
+    const closeButton = document.getElementById("searchResults");
+    closeButton.addEventListener("click", () => {
+        searchResultsBox.classList.remove("visible");
     });
 }
 

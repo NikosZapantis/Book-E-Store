@@ -49,7 +49,7 @@
             <label for="price">Price</label>
             <input type="number" id="price" min="0" step="0.01" placeholder="0.00" autocomplete="off">
             <br>
-
+            
             <button type="submit" id="submitBtn" onclick="addBookToDatabase()">Add book 📔</button>
         </form>
     </div>
@@ -59,9 +59,19 @@
         <button type="submit" id="searchBtn" onclick="searchBookToDatabase()">
             <i class="fas fa-search"></i>
         </button>
+
+        <button id="return-to-main-from-search" onclick="redirectToMainPage()">
+            <i class="fas fa-home"></i>
+        </button>
     </div>
 
-    <div id="searchResultsBox"></div>
+    <div id="searchResultsBox">
+        <div id="searchResultsContent">
+            <span id="searchResults">
+                <button id="closeButton">Close</button> <!-- X button -->
+            </span> 
+        </div>
+    </div>
 
     <footer>
         <p>© 2024 it2022019's Book E-Store Application</p>

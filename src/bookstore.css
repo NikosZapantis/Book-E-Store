@@ -4,6 +4,8 @@
 /* https://ionic.io/ionicons  [For icons-fonts]*/
 /* https://fontawesome.com/icons/square-check?s=solid&f=classic  [For icons-fonts]*/
 /* https://www.cssmatic.com/box-shadow  [For inset box-shadow generator] */
+/* For z-index:  */
+/* https://www.digitalocean.com/community/tutorials/css-z-index */
 
 body {
     background-color: #191b28;
@@ -162,25 +164,37 @@ label {
 }
 
 /* Home Button Customization */
-#return-to-main {
-    position: absolute;
-    top: 3%;
-    right: 3%;
+#return-to-main, #return-to-main-from-search {
     border: 2px solid black;
     border-radius: 10px;
-    width: 15%;
-    height: 6%;
     background-color: rgb(248, 164, 6);
-    padding: 6px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#return-to-main:hover {
+#return-to-main:hover, #return-to-main-from-search:hover {
     cursor: pointer;
     background-color: transparent;
     color: rgb(248, 164, 6);
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#return-to-main {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    width: 15%;
+    height: 6%;
+    padding: 6px;
+}
+
+#return-to-main-from-search {
+    position: fixed;
+    top: 2%;
+    right: 2%;
+    width: 15%;
+    height: 6%;
+    padding: 6px;
 }
 
 /* Search Book-Box Customization */
@@ -233,27 +247,51 @@ label {
 /* PopUp & SearchResultsBox Customization */
 #searchResultsBox {
     position: fixed;
-    top: 55%;
-    right: 35%;
-    width: 60%;
-    max-width: 500px;
-    font-size: 16px;
-    border: 2px solid #050507;
-    border-radius: 5px;
-    color: rgb(248, 164, 6);
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
     display: none;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid #191b28;
 }
 
 #searchResultsBox.visible {
-    display: block;
+    display: flex;
+}
+
+#searchResultsContent {
+    color: #191b28;
+    background-color: rgb(248, 164, 6);
+    padding: 20px 40px;
+    border-radius: 10px;
+    max-width: 100%;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+}
+
+#searchResults {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    z-index: 99999;
+}
+
+.searchResultItem {
+    margin-bottom: 10px;
 }
 
 .popup {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 27.5%;
+    left: 62.5%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
