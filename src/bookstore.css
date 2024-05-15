@@ -33,18 +33,6 @@ h1 {
     box-shadow: 7px 10px 15px 7px rgba(0, 0, 0, 0.9); 
 }
 
-/* Placeholder Customization */
-::placeholder {
-    color: rgb(248, 164, 6);
-    font-size: small;
-}
-
-/* Label Customization */
-label {
-    color:rgb(248, 164, 6);
-    font-size: large;
-}
-
 /* Starting-Box Customization */
 .firstSelect-container, #addBookSelected {
     position: absolute;
@@ -116,6 +104,7 @@ label {
     border-radius: 20px;
     border-color: rgb(248, 164, 6);
     box-shadow: 18px 16px 23px 5px rgba(0, 0, 0, 0.6);
+    
 }
 
 #genre {
@@ -315,36 +304,6 @@ label {
     font-size: 20px;
 }
 
-/* Footer Customization */
-footer {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: black;
-    background-color: rgb(255, 153, 0);
-    padding: 0px;
-    margin: auto;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    transition: opacity 0.7s ease;
-}
-
-/* Scrollbar customization */
-body::-webkit-scrollbar {
-    width: 0.5em;
-}
-
-body::-webkit-scrollbar-track {
-    box-shadow: black;
-    background-color: black;
-}
-
-body::-webkit-scrollbar-thumb {
-    border-radius: 25px;
-    background-color: rgb(255, 153, 0);
-    outline: 1px solid rgb(0, 0, 0);
-}
-
 /* Notification-Box Customization */
 .notification {
     position: fixed;
@@ -376,6 +335,8 @@ body::-webkit-scrollbar-thumb {
     color: black;
 }
 
+/* GENERAL CUSTOMIZATIONS */
+
 /* Highlight customization */
 ::selection {
     color: #191b28;
@@ -385,4 +346,46 @@ body::-webkit-scrollbar-thumb {
 ::-moz-selection {
     color: #191b28;
     background-color: rgb(248, 164, 6);
+}
+
+/* Scrollbar customization */
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: black;
+    background-color: black;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: rgb(255, 153, 0);
+    outline: 1px solid rgb(0, 0, 0);
+}
+
+/* Footer Customization */
+footer {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+    background-color: rgb(255, 153, 0);
+    padding: 0px;
+    margin: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transition: opacity 0.7s ease;
+}
+
+/* Placeholder Customization */
+::placeholder {
+    color: rgb(248, 164, 6);
+    font-size: small;
+}
+
+/* Label Customization */
+label {
+    color:rgb(248, 164, 6);
+    font-size: large;
 }
