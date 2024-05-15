@@ -80,8 +80,14 @@ function searchBookToDatabase() {
     const searchResultsBox = document.getElementById("searchResultsBox");
     if (searchResults.length > 0) {
         searchResultsBox.classList.add("visible");
+
+        // Make closeButton visible
+        closeButton.style.display = 'block';
     } else {
         searchResultsBox.classList.remove("visible");
+
+        // Hide closeButton
+        closeButton.style.display = 'none';
     }
 }
 
