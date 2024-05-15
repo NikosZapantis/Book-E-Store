@@ -91,6 +91,7 @@ label {
 #addBookBtn:hover, #searchBookBtn:hover {
     background-color: transparent;
     color:rgb(248, 164, 6);
+    transform: scale(0.9);
 }
 
 /* addBookForm inputs Customization */
