@@ -65,7 +65,7 @@ function addBookToDatabase() {
     document.getElementById("price").value = "";
 
     //Displaying notification
-    const notification = showNotification("The book has been succesfully added!");
+    showNotification("The book has been succesfully added!");
     setTimeout(() => {
         hideNotification(notification);
 
@@ -95,6 +95,7 @@ function searchBookToDatabase() {
     if (searchResults.length > 0) {
         searchResultsBox.classList.add("visible");
     } else {
+        showNotification("No results found for the specific keyword.");
         searchResultsBox.classList.remove("visible");
     }
 }
