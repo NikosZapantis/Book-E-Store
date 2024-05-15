@@ -31,63 +31,62 @@ function addBookToDatabase() {
     const currGenre = document.getElementById("genre").value.trim();
     const currPrice = document.getElementById("price").value.trim();
 
+    //TODO: Checks for input fields to be all filled-in
     if(!currTitle || !currAuthor || !currGenre || !currPrice) {
         alert("⚠️ Fill-in all the input fields before submitting. ⚠️");
         
         setTimeout(() => {
             hideNotification(notification);
-        }, 3000); // Hide notification after 3 seconds
+        }, 3000); //Hiding notification after 3 seconds
 
         return;
     }
 
+    //TODO: Checks for price to contain only numbers and [.]
     if(/[^0-9.]/.test(currPrice)) {
         alert("❌ Provide a correct price for the book you want to list! ❌");
 
         return;
     }
 
-    // Clearing input fields
+    //? Clearing input fields after the user submits the book
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
     document.getElementById("genre").selectedIndex = 0; // Resetting select to default
     document.getElementById("price").value = "";
 
-    // Showing notification
+    //Displaying notification
     const notification = showNotification("The book has been succesfully added!");
     setTimeout(() => {
         hideNotification(notification);
 
-    }, 6000); // Hiding notification box after 6 seconds
+    }, 6000); //Hiding notification box after 6 seconds
 }
 
 //? Function to search by keyword to the database and display the results
 function searchBookToDatabase() {
-    const footer = document.querySelector('footer'); // footer element
+    const footer = document.querySelector('footer');
 
-    // Starting the fade-out animation
+    //Starting the fade-out animation of the footer
     footer.style.opacity = '0';
         
     setTimeout(() => {
         footer.style.display = 'none';
     }, 700);
 
+    //? Basically I convert the keyword the user provides to Lower Case and I'm searching in the "db" the books that includes the specific keyword in their title
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
     const searchResults = registerBooks.filter(registerBook => registerBook.title.toLowerCase().includes(searchInput));
 
+    //? Calling the function to display the books I found in the db
     displaySearchResults(searchResults);
 
+    //? Making the results box visible so the user can check each book's informations
     const searchResultsBox = document.getElementById("searchResultsBox");
     if (searchResults.length > 0) {
         searchResultsBox.classList.add("visible");
-
-        // Make closeButton visible
-        closeButton.style.display = 'block';
     } else {
         searchResultsBox.classList.remove("visible");
-
-        // Hide closeButton
-        closeButton.style.display = 'none';
     }
 }
 
@@ -95,19 +94,19 @@ function searchBookToDatabase() {
 function displaySearchResults(res) {
     const searchResultsBox = document.getElementById("searchResultsBox");
     const searchResultsContent = document.getElementById("searchResultsContent");
-    searchResultsContent.innerHTML = ""; // Clear previous search results
+    searchResultsContent.innerHTML = ""; //Clearing previous search results
 
     res.forEach((registerBook, index) => {
         const registerBookItem = document.createElement("div");
-        registerBookItem.textContent = `${index + 1}. ${registerBook.title}`; // Prefix with index number
+        registerBookItem.textContent = `${index + 1}. ${registerBook.title}`; //Displaying each book found with the keyword and besides it I put a numeric index like (1. / 2.)
         registerBookItem.classList.add("searchResultItem");
 
-        // Add event listener for displaying book details on hover
+        //? Event listener for displaying book details on mouse hover with a small pop-up window
         registerBookItem.addEventListener("mouseenter", () => {
             displayBookDetailsOnHover(registerBook);
         });
 
-        // Add event listener to hide book details on mouse leave
+        //? Event listener to hide book details on mouse leave and close the pop-up window
         registerBookItem.addEventListener("mouseleave", () => {
             closePopupOnMouseLeave();
         });
@@ -115,14 +114,8 @@ function displaySearchResults(res) {
         searchResultsContent.appendChild(registerBookItem);
     });
 
-    // Display the search results box
+    //Displaying the search results box
     searchResultsBox.classList.add("visible");
-
-    // Add event listener for the close button
-    const closeButton = document.getElementById("searchResultsCloseBtn");
-    closeButton.addEventListener("click", () => {
-        searchResultsBox.classList.remove("visible");
-    });
 }
 
 //? Function to display the specific's book details
@@ -138,7 +131,7 @@ function displayBookDetailsOnHover(registerBook) {
         </div>
     `;
     
-    // Adding event listeners for hover
+    //? Event listeners for mouse hover and leave
     popup.addEventListener("mouseenter", () => {
         document.body.appendChild(popup);
     });
@@ -175,7 +168,7 @@ function hideNotification(notification) {
     notification.style.right = '-300px';
     setTimeout(() => {
         notification.remove();
-    }, 500); // Waiting for the animation to complete before removing
+    }, 500); //Waiting for the animation to complete before removing
 }
 
 //? Close button functionality for notification box
@@ -194,10 +187,12 @@ document.addEventListener('keydown', function(e) {
     }else if(e.key === 'Enter') {
         event.preventDefault();
 
+        //Checking which div is open so I can redirect the Enter key in it's proper use each time
         var currDivOpen = document.getElementById('addBookSelected');
         if (currDivOpen.style.display !== 'none') {
             addBookToDatabase();
         }
+
         currDivOpen = document.getElementById('searchBookSelected');
         if (currDivOpen.style.display !== 'none') {
             searchBookToDatabase();
