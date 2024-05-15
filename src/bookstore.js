@@ -9,6 +9,15 @@ document.getElementById("searchBookBtn").addEventListener("click", function() {
     document.getElementById("searchBookSelected").style.display = "block";
 });
 
+//? Event listener for the X button so the user can continue searching books
+document.addEventListener('DOMContentLoaded', function() {
+    const closeSearchResultsBtn = document.getElementById('closeSearchResultsBtn');
+    closeSearchResultsBtn.addEventListener('click', function() {
+        const searchResultsBox = document.getElementById('searchResultsBox');
+        searchResultsBox.classList.remove('visible');
+    });
+});
+
 //! DATA ENTRIES FOR UAT
 const registerBooks = [
     { title: "Pirates of the Caribbean", author: "Johnny Depp", genre: "Action and Adventure", price: 12.99},
