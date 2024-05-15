@@ -83,6 +83,14 @@ function searchBookToDatabase() {
         footer.style.display = 'none';
     }, 700);
 
+    //Checking if the user provided at least one letter as a keyword to search
+    const currSearch = document.getElementById("searchInput").value.trim();
+
+    if(!currSearch) {
+        alert("⚠️ Provide a keyword before searching. ⚠️");
+        return;
+    }
+
     //? Basically I convert the keyword the user provides to Lower Case and I'm searching in the "db" the books that includes the specific keyword in their title
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
     const searchResults = registerBooks.filter(registerBook => registerBook.title.toLowerCase().includes(searchInput));
