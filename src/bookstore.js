@@ -1,4 +1,4 @@
-//? Event listeners to redirect to the correct route each time [Displaying the proper function and inputs]
+//? Event listeners to redirect to the correct route each time [Displaying the proper feature and it's inputs]
 document.getElementById("addBookBtn").addEventListener("click", function() {
     document.querySelector(".firstSelect-container").style.display = "none";
     document.getElementById("addBookSelected").style.display = "block"; 
@@ -83,7 +83,7 @@ function searchBookToDatabase() {
         footer.style.display = 'none';
     }, 700);
 
-    //Checking if the user provided at least one letter as a keyword to search [You can uncomment it and have the feature of not allowing the blank search of the user]
+    //Checking if the user provided at least one letter as a keyword to search [This can be uncommented and have the feature of not allowing the blank search of the user]
     // const currSearch = document.getElementById("searchInput").value.trim();
 
     // if(!currSearch) {
