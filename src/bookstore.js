@@ -1,23 +1,3 @@
-//? Event listeners to redirect to the correct route each time [Displaying the proper feature and it's inputs]
-document.getElementById("addBookBtn").addEventListener("click", function() {
-    document.querySelector(".firstSelect-container").style.display = "none";
-    document.getElementById("addBookSelected").style.display = "block"; 
-});
-
-document.getElementById("searchBookBtn").addEventListener("click", function() {
-    document.querySelector(".firstSelect-container").style.display = "none";
-    document.getElementById("searchBookSelected").style.display = "block";
-});
-
-//? Event listener for the X button so the user can continue searching books
-document.addEventListener('DOMContentLoaded', function() {
-    const closeSearchResultsBtn = document.getElementById('closeSearchResultsBtn');
-    closeSearchResultsBtn.addEventListener('click', function() {
-        const searchResultsBox = document.getElementById('searchResultsBox');
-        searchResultsBox.classList.remove('visible');
-    });
-});
-
 //! DATA ENTRIES FOR UAT
 const registerBooks = [
     { title: "Pirates of the Caribbean", author: "Johnny Depp", genre: "Action and Adventure", price: 12.99},
@@ -33,8 +13,6 @@ function redirectToMainPage() {
 
 //? Function to add a new book to my SQLite db
 function addBookToDatabase() {
-    event.preventDefault(); //preventing from default actions of the browser
-
     const currTitle = document.getElementById("title").value.trim();
     const currAuthor = document.getElementById("author").value.trim();
     const currGenre = document.getElementById("genre").value.trim();
@@ -42,19 +20,12 @@ function addBookToDatabase() {
 
     //TODO: Checks for input fields to be all filled-in
     if(!currTitle || !currAuthor || !currGenre || !currPrice) {
-        alert("⚠️ Fill-in all the input fields before submitting. ⚠️");
-        
-        setTimeout(() => {
-            hideNotification(notification);
-        }, 3000); //Hiding notification after 3 seconds
-
         return;
     }
 
     //TODO: Checks for price to contain only numbers and [.]
-    if(/[^0-9.]/.test(currPrice)) {
+    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { //[^0-9.]/.test(currPrice)
         alert("❌ Provide a correct price for the book you want to list! ❌");
-
         return;
     }
 
@@ -65,11 +36,12 @@ function addBookToDatabase() {
     document.getElementById("price").value = "";
 
     //Displaying notification
-    showNotification("The book has been succesfully added!");
+    const notification = showNotification("The book has been succesfully added!");
     setTimeout(() => {
+        // console.log('Mpika');
         hideNotification(notification);
-
-    }, 6000); //Hiding notification box after 6 seconds
+        // console.log('Ekleisa notification');
+    }, 4000); //Hiding notification box after 4 seconds
 }
 
 //? Function to search by keyword to the database and display the results
@@ -190,12 +162,34 @@ function hideNotification(notification) {
     }, 500); //Waiting for the animation to complete before removing
 }
 
+//? --------------------------- EVENT LISTENERS ---------------------------
+
 //? Close button functionality for notification box
 document.addEventListener('click', function(e) {
     if (e.target && e.target.classList.contains('close')) {
         const notification = e.target.parentNode;
         hideNotification(notification);
     }
+});
+
+//? Event listeners to redirect to the correct route each time [Displaying the proper feature and it's inputs]
+document.getElementById("addBookBtn").addEventListener("click", function() {
+    document.querySelector(".firstSelect-container").style.display = "none";
+    document.getElementById("addBookSelected").style.display = "block"; 
+});
+
+document.getElementById("searchBookBtn").addEventListener("click", function() {
+    document.querySelector(".firstSelect-container").style.display = "none";
+    document.getElementById("searchBookSelected").style.display = "block";
+});
+
+//? Event listener for the X button so the user can continue searching books
+document.addEventListener('DOMContentLoaded', function() {
+    const closeSearchResultsBtn = document.getElementById('closeSearchResultsBtn');
+    closeSearchResultsBtn.addEventListener('click', function() {
+        const searchResultsBox = document.getElementById('searchResultsBox');
+        searchResultsBox.classList.remove('visible');
+    });
 });
 
 //? Event listeners for keypads
