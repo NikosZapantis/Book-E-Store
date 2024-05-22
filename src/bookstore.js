@@ -73,7 +73,11 @@ function searchBookToDatabase() {
     if (searchResults.length > 0) {
         searchResultsBox.classList.add("visible");
     } else {
-        showNotification("No results found for the specific keyword.");
+        const notification = showNotification("No results found for the specific keyword.");
+        setTimeout(() => {
+            hideNotification(notification);
+        }, 4000); //Hiding notification box after 4 seconds
+        
         searchResultsBox.classList.remove("visible");
     }
 }
