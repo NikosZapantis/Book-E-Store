@@ -119,6 +119,7 @@ function displaySearchResults(res) {
         registerBookItem.textContent = `${index + 1}. ${registerBook.title}`; //Displaying each book found with the keyword and besides it I put a numeric index like (1. / 2.)
         registerBookItem.classList.add("searchResultItem");
 
+        //[https://www.w3schools.com/jsref/obj_mouseevent.asp]
         //? Event listener for displaying book details on mouse hover with a small pop-up window
         registerBookItem.addEventListener("mouseenter", () => {
             displayBookDetailsOnHover(registerBook);
