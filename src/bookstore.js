@@ -24,7 +24,7 @@ function addBookToDatabase() {
     }
 
     //TODO: Checks for price to contain only numbers and [.]
-    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { //[^0-9.]/.test(currPrice)
+    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { //Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
         alert("❌ Provide a correct price for the book you want to list! ❌");
         return;
     }
@@ -38,9 +38,7 @@ function addBookToDatabase() {
     //Displaying notification
     const notification = showNotification("The book has been succesfully added!");
     setTimeout(() => {
-        // console.log('Mpika');
         hideNotification(notification);
-        // console.log('Ekleisa notification');
     }, 4000); //Hiding notification box after 4 seconds
 }
 
