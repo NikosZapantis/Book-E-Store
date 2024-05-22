@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="/img/faviconMain.png"> <!-- favicon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Library is needed because I use the fa-home icon -->
     <link rel="stylesheet" href="/src/bookstore.css">
+
+    <!-- [https://www.w3schools.com/tags/att_input_required.asp] Required input fields -->
 </head>
 <body>
     <h1>it2022019's Book e-Store</h1>
@@ -25,16 +27,16 @@
             </button>
         
             <label for="title">Title</label>
-            <input type="text" id="title" placeholder="ex. (1922)" autocomplete="off">
+            <input type="text" id="title" placeholder="ex. (1922)" autocomplete="off" required>
             <br>
             
             <label for="author">Author</label>
-            <input type="text" id="author" placeholder="ex. (Stephen King)" autocomplete="off">
+            <input type="text" id="author" placeholder="ex. (Stephen King)" autocomplete="off" required>
             <br>
 
             <label for="genre">Genre</label>
             <br>
-            <select id="genre">
+            <select id="genre" required>
                 <option id="selectOpt" selected="" disabled="" value="">--Select--</option>
                 <option value="Science fiction">Science fiction</option>
                 <option value="Satire">Satire</option>
@@ -47,7 +49,7 @@
             <br><br>
 
             <label for="price">Price</label>
-            <input type="number" id="price" min="0" step="0.01" placeholder="0.00" autocomplete="off">
+            <input type="number" id="price" min="0" step="0.01" placeholder="0.00" autocomplete="off" required>
             <br>
 
             <button type="submit" id="submitBtn" onclick="addBookToDatabase()">Add book 📔</button>
