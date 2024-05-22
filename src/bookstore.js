@@ -90,8 +90,20 @@ function displaySearchResults(res) {
 
     res.forEach((registerBook, index) => {
         const registerBookItem = document.createElement("div");
-        registerBookItem.textContent = `${index + 1}. ${registerBook.title}`; //Displaying each book found with the keyword and besides it I put a numeric index like (1. / 2.)
         registerBookItem.classList.add("searchResultItem");
+        
+        const bookTitle = document.createElement("span");
+        bookTitle.textContent = `${index + 1}. ${registerBook.title}`;
+        
+        const copyBtn = document.createElement("button");
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+        copyBtn.classList.add("copyBtn");
+        copyBtn.addEventListener("click", () => {
+            copyBookDetailsToClipboard(registerBook);
+        });
+
+        registerBookItem.appendChild(bookTitle);
+        registerBookItem.appendChild(copyBtn);
 
         //[https://www.w3schools.com/jsref/obj_mouseevent.asp]
         //? Event listener for displaying book details on mouse hover with a small pop-up window
@@ -109,6 +121,28 @@ function displaySearchResults(res) {
 
     //Displaying the search results box
     searchResultsBox.classList.add("visible");
+}
+
+//? Function to copy specific's book details
+function copyBookDetailsToClipboard(registerBook) {
+    const bookDetails = `
+        Title: ${registerBook.title}
+        Author: ${registerBook.author}
+        Genre: ${registerBook.genre}
+        Price: ${registerBook.price}€
+    `;
+
+    navigator.clipboard.writeText(bookDetails).then(() => {
+        const notification = showNotification("Book details copied to clipboard!");
+        setTimeout(() => {
+            hideNotification(notification);
+        }, 4000); // Hiding notification box after 4 seconds
+    }).catch(err => {
+        const notification = showNotification("Failed to copy book details. Please try again.");
+        setTimeout(() => {
+            hideNotification(notification);
+        }, 4000); // Hiding notification box after 4 seconds
+    });
 }
 
 //? Function to display the specific's book details
