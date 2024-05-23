@@ -143,7 +143,7 @@ function copyBookDetailsToClipboard(registerBook) {
 let currPopUp = null;
 let currInfoBtn = null;
 
-function toggleBookInfo(book, infoBtn) {
+function toggleBookInfo(specificBook, infoBtn) {
     //Checking if the user pressed the same infoBtn and the currently displayed pop-up is referenced to this infoBtn    
     if(currInfoBtn === infoBtn && currPopUp) {
         currPopUp.remove();
@@ -160,10 +160,10 @@ function toggleBookInfo(book, infoBtn) {
     popup.classList.add("popup");
     popup.innerHTML = `
         <div class="popup-content">
-            <h2>${book.title}</h2>
-            <p><strong>Author:</strong> ${book.author}</p>
-            <p><strong>Genre:</strong> ${book.genre}</p>
-            <p><strong>Price:</strong> ${book.price}€</p>
+            <h2>${specificBook.title}</h2>
+            <p><strong>Author:</strong> ${specificBook.author}</p>
+            <p><strong>Genre:</strong> ${specificBook.genre}</p>
+            <p><strong>Price:</strong> ${specificBook.price}€</p>
         </div>
     `;
 
