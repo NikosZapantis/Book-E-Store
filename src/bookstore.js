@@ -84,7 +84,6 @@ function searchBookToDatabase() {
 
 //? Function to display properly the data found by the search
 function displaySearchResults(res) {
-    const searchResultsBox = document.getElementById("searchResultsBox");
     const searchResultsContent = document.getElementById("searchResultsContent");
     searchResultsContent.innerHTML = ""; //Clearing previous search results
 
@@ -95,6 +94,7 @@ function displaySearchResults(res) {
         const bookTitle = document.createElement("span");
         bookTitle.textContent = `${index + 1}. ${registerBook.title}`;
         
+        //? Copy Button so the user can easily copy all the information of a specific book
         const copyBtn = document.createElement("button");
         copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
         copyBtn.classList.add("copyBtn");
@@ -102,25 +102,18 @@ function displaySearchResults(res) {
             copyBookDetailsToClipboard(registerBook);
         });
 
+        //? Info button so the user can easily toggle the information pop-up for each title
+        const infoBtn = document.createElement("button");
+        infoBtn.innerHTML = '<i class="fas fa-info-circle"></i>';
+        infoBtn.classList.add("infoBtn");
+        infoBtn.addEventListener("click", () => toggleBookInfo(registerBook, infoBtn));
+
         registerBookItem.appendChild(bookTitle);
         registerBookItem.appendChild(copyBtn);
-
-        //[https://www.w3schools.com/jsref/obj_mouseevent.asp]
-        //? Event listener for displaying book details on mouse hover with a small pop-up window
-        registerBookItem.addEventListener("mouseenter", () => {
-            displayBookDetailsOnHover(registerBook);
-        });
-
-        //? Event listener to hide book details on mouse leave and close the pop-up window
-        registerBookItem.addEventListener("mouseleave", () => {
-            closePopupOnMouseLeave();
-        });
+        registerBookItem.appendChild(infoBtn);
 
         searchResultsContent.appendChild(registerBookItem);
     });
-
-    //Displaying the search results box
-    searchResultsBox.classList.add("visible");
 }
 
 //? Function to copy specific's book details
@@ -145,36 +138,40 @@ function copyBookDetailsToClipboard(registerBook) {
     });
 }
 
-//? Function to display the specific's book details
-function displayBookDetailsOnHover(registerBook) {
+//? Function to display the specific's book information
+//? ChatGpt & StackOverflow helped here to struct correct the logic behind of closing the pop-up when the same infoBtn was pressed twice
+let currPopUp = null;
+let currInfoBtn = null;
+
+function toggleBookInfo(book, infoBtn) {
+    //Checking if the user pressed the same infoBtn and the currently displayed pop-up is referenced to this infoBtn    
+    if(currInfoBtn === infoBtn && currPopUp) {
+        currPopUp.remove();
+        currPopUp = null;
+        currInfoBtn = null;
+        return;
+    }
+
+    if(currPopUp) {
+        currPopUp.remove();
+    }
+
     const popup = document.createElement("div");
     popup.classList.add("popup");
     popup.innerHTML = `
         <div class="popup-content">
-            <h2>${registerBook.title}</h2>
-            <p><strong>Author:</strong> ${registerBook.author}</p>
-            <p><strong>Genre:</strong> ${registerBook.genre}</p>
-            <p><strong>Price:</strong> ${registerBook.price}€</p>
+            <h2>${book.title}</h2>
+            <p><strong>Author:</strong> ${book.author}</p>
+            <p><strong>Genre:</strong> ${book.genre}</p>
+            <p><strong>Price:</strong> ${book.price}€</p>
         </div>
     `;
-    
-    //? Event listeners for mouse hover and leave
-    popup.addEventListener("mouseenter", () => {
-        document.body.appendChild(popup);
-    });
-    popup.addEventListener("mouseleave", () => {
-        popup.remove();
-    });
 
     document.body.appendChild(popup);
-}
 
-//? Function to close the popup
-function closePopupOnMouseLeave() {
-    const popup = document.querySelector(".popup");
-    if (popup) {
-        popup.remove();
-    }
+    //? Updating current popup and info button references
+    currPopUp = popup;
+    currInfoBtn = infoBtn;
 }
 
 //? Function to show the notification of the loading msg
@@ -225,6 +222,13 @@ document.addEventListener('DOMContentLoaded', function() {
     closeSearchResultsBtn.addEventListener('click', function() {
         const searchResultsBox = document.getElementById('searchResultsBox');
         searchResultsBox.classList.remove('visible');
+
+        //Closing the pop-up that is open when the user press the X button
+        if(currPopUp) {
+            currPopUp.remove();
+            currPopUp = null;
+            currInfoBtn = null;
+        }
     });
 });
 
