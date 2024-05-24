@@ -25,7 +25,6 @@ function addBookToDatabase() {
 
     //TODO: Checks for price to contain only numbers and [.]
     if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { //Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
-        alert("❌ Provide a correct price for the book you want to list! ❌");
         return;
     }
 
