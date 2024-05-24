@@ -77,6 +77,18 @@ function displaySearchResults(res) {
     const searchResultsContent = document.getElementById("searchResultsContent");
     searchResultsContent.innerHTML = ""; //Clearing previous search results
 
+    //? Filter Button so the user can easily sort the books found by their price
+    const filterBtn = document.createElement("button");
+    filterBtn.innerHTML = `<i class="fa-solid fa-filter"></i> ${currSortOrder === 'asc' ? 'Ascending <i class="fa-solid fa-sort-up"></i>' : 'Descending <i class="fa-solid fa-sort-down"></i>'}`;
+    filterBtn.classList.add("filterBtn");
+    filterBtn.addEventListener("click", () => {
+        currSortOrder = (currSortOrder === 'asc') ? 'desc' : 'asc';
+        filterBtn.innerHTML = `<i class="fa-solid fa-filter"></i>${currSortOrder === 'asc' ? 'Ascending <i class="fa-solid fa-sort-up"></i>' : 'Descending <i class="fa-solid fa-sort-down"></i>'}`;
+        displaySearchResults(sortByPrice(res, currSortOrder));
+    });
+
+    searchResultsContent.appendChild(filterBtn);
+
     res.forEach((registerBook, index) => {
         const registerBookItem = document.createElement("div");
         registerBookItem.classList.add("searchResultItem");
@@ -103,6 +115,19 @@ function displaySearchResults(res) {
         registerBookItem.appendChild(infoBtn);
 
         searchResultsContent.appendChild(registerBookItem);
+    });
+}
+
+//? Function to sort the books by price
+let currSortOrder = 'asc';
+
+function sortByPrice(books, ord) {
+    return books.sort((a, b) => {
+        if(ord === 'asc') {
+            return a.price - b.price;
+        }else {
+            return b.price - a.price;
+        }
     });
 }
 
