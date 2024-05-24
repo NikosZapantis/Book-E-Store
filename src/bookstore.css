@@ -11,9 +11,8 @@
 /* Max-width & Min-height: 1880 x 700 */
 /* Min-width & Max-height: 768 x 832 */
 /* The resolutions above are the minimum for the UI to be displayed normal, in a lower resolution than those provided some buttons or the borders may be displayed differently */
-
-
 /* rgb(248, 164, 6) */
+
 body {
     background-color: #222831;
     color: #f99607;
@@ -479,4 +478,26 @@ footer:hover p {
 label {
     color: #f99607;
     font-size: large;
+}
+
+.links {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    display: flex;
+    gap: 35px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #f99607;
+}
+
+.links a:hover {
+    transform: scale(1.2);
+    color: black;
+}
+
+.links i {
+    font-size: 35px;
 }
