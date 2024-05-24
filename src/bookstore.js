@@ -44,15 +44,6 @@ function addBookToDatabase() {
 
 //? Function to search by keyword to the database and display the results
 function searchBookToDatabase() {
-    const footer = document.querySelector('footer');
-
-    //Starting the fade-out animation of the footer
-    footer.style.opacity = '0';
-        
-    setTimeout(() => {
-        footer.style.display = 'none';
-    }, 700);
-
     //Checking if the user provided at least one letter as a keyword to search [This can be uncommented and have the feature of not allowing the blank search of the user]
     // const currSearch = document.getElementById("searchInput").value.trim();
 
