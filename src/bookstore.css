@@ -12,9 +12,11 @@
 /* Min-width & Max-height: 768 x 832 */
 /* The resolutions above are the minimum for the UI to be displayed normal, in a lower resolution than those provided some buttons or the borders may be displayed differently */
 
+
+/* rgb(248, 164, 6) */
 body {
-    background-color: #191b28;
-    color: rgb(248, 164, 6);
+    background-color: #222831;
+    color: #f99607;
     margin: 0;
     height: 100vh;
     display: flex;
@@ -44,7 +46,7 @@ h1 {
     top: 60%;
     left: 52.5%;
     transform: translate(-50%, -50%);
-    background-color: rgba(25, 27, 40, 0.8);
+    background-color: #222831;
     padding: 20px;
     border: solid 2px #050507;
     border-radius: 15px;
@@ -69,8 +71,8 @@ h1 {
     width: 200px;
     height: 200px;
     top: 22.5%;
-    color: #191b28;
-    background-color: rgb(248, 164, 6);
+    color: #222831;
+    background-color: #f99607;
     border: solid 2px black;
     border-radius: 15px;
     font-size: 16px;
@@ -83,7 +85,7 @@ h1 {
 
 #addBookBtn:hover, #searchBookBtn:hover {
     background-color: transparent;
-    color:rgb(248, 164, 6);
+    color: #f99607;
     transform: scale(0.9);
 }
 
@@ -95,7 +97,7 @@ h1 {
     padding: 8px;
     font-size: 16px;
     border: 1px solid #050507;
-    color:rgb(248, 164, 6);
+    color: #f99607;
     border-radius: 10px;
     background-color: transparent;
     -webkit-box-shadow: inset 1px 1px 8px 2px rgba(5,5,7,0.79);
@@ -107,7 +109,7 @@ h1 {
 .addBookForm input:focus {
     outline: none;
     border-radius: 20px;
-    border-color: rgb(248, 164, 6);
+    border-color: #f99607;
     box-shadow: 18px 16px 23px 5px rgba(0, 0, 0, 0.6);
     
 }
@@ -117,7 +119,7 @@ h1 {
     padding: 8px;
     font-size: 16px;
     border: 1px solid #050507;
-    color:rgb(248, 164, 6);
+    color: #f99607;
     border-radius: 15px;
     background-color: transparent;
     -webkit-box-shadow: inset 1px 1px 8px 2px rgba(5,5,7,0.79);
@@ -127,19 +129,19 @@ h1 {
 }
 
 #genre option {
-    color: rgb(248, 164, 6);
-    background-color: #191b28;
+    color: #f99607;
+    background-color: #222831;
 }
 
 #genre:focus {
     outline: none;
     border-radius: 25px;
-    border-color: rgb(248, 164, 6);
-    box-shadow: 0 0 5px rgb(248, 164, 6);
+    border-color: #f99607;
+    box-shadow: 0 0 5px #f99607;
 }
 
 #submitBtn {
-    background-color: #19d210;
+    background-color: #379956;
     color: black;
     border: none;
     border-radius: 10px;
@@ -148,28 +150,30 @@ h1 {
     cursor: pointer;
     display: block;
     margin: 20px auto;
-    transition: 0.1s ease-in-out;
+    transition: 0.3s ease-in-out;
+    transform: scale(1.2);
 }
 
 #submitBtn:hover {
     border: 2px solid;
-    border-color: #19d210;
-    color: #19d210;
+    border-color: #379956;
+    color: #379956;
     background-color: transparent;
+    transform: scale(1);
 }
 
 /* Home Button Customization */
 #return-to-main, #return-to-main-from-search {
     border: 2px solid black;
     border-radius: 10px;
-    background-color: rgb(248, 164, 6);
+    background-color: #f99607;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #return-to-main:hover, #return-to-main-from-search:hover {
     cursor: pointer;
     background-color: transparent;
-    color: rgb(248, 164, 6);
+    color: #f99607;
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -205,7 +209,7 @@ h1 {
     font-size: 16px;
     border: 1px solid #050507;
     border-radius: 15px;
-    color: rgb(248, 164, 6);
+    color: #f99607;
     background-color: transparent;
     -webkit-box-shadow: inset 1px 1px 8px 2px rgba(5,5,7,0.79);
     -moz-box-shadow: inset 1px 1px 8px 2px rgba(5,5,7,0.79);
@@ -215,7 +219,7 @@ h1 {
 
 #searchInput:focus {
     outline: none;
-    border-color: rgb(248, 164, 6);
+    border-color: #f99607;
     box-shadow: 18px 16px 23px 5px rgba(0, 0, 0, 0.6);
 }
 
@@ -225,7 +229,7 @@ h1 {
     right: 10px;
     transform: translateY(-50%);
     background-color: transparent;
-    color: rgb(248, 164, 6);
+    color: #f99607;
     border: none;
     border-radius: 10px;
     padding: 8px 16px;
@@ -236,7 +240,7 @@ h1 {
 
 #searchBtn:hover {
     color: black;
-    background-color: rgb(248, 164, 6); 
+    background-color: #f99607; 
 }
 
 /* PopUp & SearchResultsBox Customization */
@@ -251,7 +255,7 @@ h1 {
     display: none;
     justify-content: center;
     align-items: center;
-    outline: 1px solid #191b28;
+    outline: 1px solid #222831;
     backdrop-filter: blur(5px);
 }
 
@@ -260,8 +264,8 @@ h1 {
 }
 
 #searchResultsContent {
-    color: #191b28;
-    background-color: rgb(248, 164, 6);
+    color: #222831;
+    background-color: #f99607;
     padding: 20px 40px;
     border-radius: 10px;
     max-width: 100%;
@@ -288,14 +292,14 @@ h1 {
     background: transparent;
     border: none;
     font-size: 50px;
-    color: rgb(248, 164, 6);
+    color: #f99607;
     cursor: pointer;
     z-index: 1000;
     transition: 0.4s ease-in-out;
 }
 
 #closeSearchResultsBtn:hover {
-    color: rgb(248, 164, 6);
+    color: #f99607;
     transform: scale(1.2);
 }
 
@@ -310,7 +314,7 @@ h1 {
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    outline: 1px solid rgb(248, 164, 6);
+    outline: 1px solid #f99607;
     padding: 20px;
     border-radius: 10px;
     z-index: 9999;
@@ -364,7 +368,7 @@ h1 {
     margin-left: 10px;
     padding: 5px 10px;
     background-color: transparent;
-    color: #191b28;
+    color: #222831;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -376,8 +380,8 @@ h1 {
 }
 
 .copyBtn:hover {
-    background-color: #191b28;
-    color: rgb(248, 164, 6);
+    background-color: #222831;
+    color: #f99607;
 }
 
 /* Info Button Customization */
@@ -385,7 +389,7 @@ h1 {
     margin-left: 10px;
     padding: 5px 10px;
     background-color: transparent;
-    color: #191b28;
+    color: #222831;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -397,21 +401,21 @@ h1 {
 }
 
 .infoBtn:hover, .infoBtn:focus {
-    background-color: #191b28;
-    color: rgb(248, 164, 6);
+    background-color: #222831;
+    color: #f99607;
 }
 
 /* GENERAL CUSTOMIZATIONS */
 
 /* Highlight customization */
 ::selection {
-    color: #191b28;
-    background-color: rgb(248, 164, 6);
+    color: #222831;
+    background-color: #f99607;
 }
 
 ::-moz-selection {
-    color: #191b28;
-    background-color: rgb(248, 164, 6);
+    color: #222831;
+    background-color: #f99607;
 }
 
 /* Scrollbar customization */
@@ -426,7 +430,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
     border-radius: 25px;
-    background-color: rgb(255, 153, 0);
+    background-color: #f99607;
     outline: 1px solid rgb(0, 0, 0);
 }
 
@@ -434,24 +438,45 @@ body::-webkit-scrollbar-thumb {
 footer {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: black;
-    background-color: rgb(255, 153, 0);
+    background-color: #f99607;
     padding: 0px;
     margin: auto;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    overflow: hidden;
     transition: opacity 0.7s ease;
+}
+
+footer p {
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    left: 0%;
+}
+
+footer:hover p {
+    cursor: pointer;
+    animation: slideText 15s linear infinite;
+}
+
+@keyframes slideText {
+    from {
+        left: 0%;
+    }to {
+        left: 100%;
+    }
 }
 
 /* Placeholder Customization */
 ::placeholder {
-    color: rgb(248, 164, 6);
+    color: #f99607;
     font-size: small;
 }
 
 /* Label Customization */
 label {
-    color:rgb(248, 164, 6);
+    color: #f99607;
     font-size: large;
 }
