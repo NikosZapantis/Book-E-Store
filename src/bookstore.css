@@ -404,6 +404,28 @@ h1 {
     color: #f99607;
 }
 
+/* Filter Button Customization */
+.filterBtn {
+    margin-left: -15px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #222831;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filterBtn i {
+    margin: 0;
+    font-size: 16px;
+}
+
+.filterBtn:hover {
+    background-color: #222831;
+    color: #f99607;
+}
+
 /* GENERAL CUSTOMIZATIONS */
 
 /* Highlight customization */
