@@ -491,11 +491,12 @@ label {
 .links a {
     text-decoration: none;
     color: #f99607;
+    transition: 0.4s ease-in-out; 
 }
 
 .links a:hover {
-    transform: scale(1.2);
-    color: black;
+    transform: scale(1.4);
+    transition: 0.4s ease-in-out; 
 }
 
 .links i {
