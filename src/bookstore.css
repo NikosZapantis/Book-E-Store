@@ -478,7 +478,7 @@ footer p {
 }
 
 footer:hover p {
-    cursor: pointer;
+    cursor: default;
     animation: slideText 15s linear infinite;
 }
 
