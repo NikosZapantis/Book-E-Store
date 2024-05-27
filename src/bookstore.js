@@ -43,13 +43,16 @@ function addBookToDatabase() {
 
 //? Function to search by keyword to the database and display the results
 function searchBookToDatabase() {
-    //Checking if the user provided at least one letter as a keyword to search [This can be uncommented and have the feature of not allowing the blank search of the user]
-    // const currSearch = document.getElementById("searchInput").value.trim();
+    //Checking if the user provided at least 3 characters as a keyword to search
+    const currSearch = document.getElementById("searchInput").value.trim();
 
-    // if(!currSearch) {
-    //     alert("⚠️ Provide a keyword before searching. ⚠️");
-    //     return;
-    // }
+    if(currSearch.length < 3) {
+        const notification = showNotification("Please include at least 3 characters as a keyword!");
+        setTimeout(() => {
+            hideNotification(notification);
+        }, 4000); //Hiding notification box after 4 seconds
+        return;
+    }
 
     //? Basically I convert the keyword the user provides to Lower Case and I'm searching in the "db" the books that includes the specific keyword in their title
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
