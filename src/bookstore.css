@@ -73,7 +73,7 @@ h1 {
     background-color: #f99607;
     border: solid 2px black;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 22px;
     cursor: pointer;
     margin: 0 50px;
     box-shadow: 0px 20px 35px 8px rgba(0, 0, 0, 0.6);
@@ -154,6 +154,7 @@ h1 {
 
 #submitBtn:hover {
     border: 2px solid;
+    border-radius: 20px;
     border-color: #379956;
     color: #379956;
     background-color: transparent;
