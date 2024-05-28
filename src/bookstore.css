@@ -480,12 +480,13 @@ label {
     font-size: large;
 }
 
+/* Link Customization */
 .links {
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 2%;
+    right: 2%;
     display: flex;
-    gap: 35px;
+    gap: 40px;
 }
 
 .links a {
