@@ -36,10 +36,7 @@ function addBookToDatabase() {
     event.preventDefault(); // Preventing the auto-refresh of the page after resetting the input fields [To avoid the display of the required field message pop-up]
 
     //Displaying notification
-    const notification = showNotification("The book has been succesfully added!");
-    setTimeout(() => {
-        hideNotification(notification);
-    }, 4000); //Hiding notification box after 4 seconds
+    showNotification("The book has been succesfully added!");
 }
 
 //? Function to search by keyword to the database and display the results
@@ -48,10 +45,7 @@ function searchBookToDatabase() {
     const currSearch = document.getElementById("searchInput").value.trim();
 
     if(currSearch.length < 3) {
-        const notification = showNotification("Please include at least 3 characters as a keyword!");
-        setTimeout(() => {
-            hideNotification(notification);
-        }, 4000); //Hiding notification box after 4 seconds
+        showNotification("Please include at least 3 characters as a keyword!");
         return;
     }
 
@@ -67,10 +61,7 @@ function searchBookToDatabase() {
     if (searchResults.length > 0) {
         searchResultsBox.classList.add("visible");
     } else {
-        const notification = showNotification("No results found for the specific keyword.");
-        setTimeout(() => {
-            hideNotification(notification);
-        }, 4000); //Hiding notification box after 4 seconds
+        showNotification("No results found for the specific keyword.");
         
         searchResultsBox.classList.remove("visible");
     }
@@ -120,15 +111,9 @@ function copyBookDetailsToClipboard(registerBook) {
     `;
 
     navigator.clipboard.writeText(bookDetails).then(() => {
-        const notification = showNotification("Book details copied to clipboard!");
-        setTimeout(() => {
-            hideNotification(notification);
-        }, 4000); // Hiding notification box after 4 seconds
+        showNotification("Book details copied to clipboard!");
     }).catch(err => {
-        const notification = showNotification("Failed to copy book details. Please try again.");
-        setTimeout(() => {
-            hideNotification(notification);
-        }, 4000); // Hiding notification box after 4 seconds
+        showNotification("Failed to copy book details. Please try again.");
     });
 }
 
@@ -178,12 +163,15 @@ function showNotification(msg) {
     setTimeout(() => {
         notification.style.right = '20px';
     }, 100);
+
+    setTimeout(() => hideNotification(notification), 4000);
     return notification;
 }
 
 //? Function to hide the notification
 function hideNotification(notification) {
     notification.style.right = '-300px';
+
     setTimeout(() => {
         notification.remove();
     }, 500); //Waiting for the animation to complete before removing
