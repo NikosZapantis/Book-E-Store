@@ -79,7 +79,7 @@ function searchBookToDatabase() {
 //? Function to display properly the data found by the search
 function displaySearchResults(res) {
     const searchResultsContent = document.getElementById("searchResultsContent");
-    searchResultsContent.innerHTML = ""; //Clearing previous search results
+    searchResultsContent.innerHTML = ""; // Cleaning previous search results
 
     res.forEach((registerBook, index) => {
         const registerBookItem = document.createElement("div");
