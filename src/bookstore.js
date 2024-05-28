@@ -31,8 +31,9 @@ function addBookToDatabase() {
     //? Clearing input fields after the user submits the book
     document.getElementById("title").value = "";
     document.getElementById("author").value = "";
-    document.getElementById("genre").selectedIndex = 0; // Resetting select to default
+    document.getElementById("genre").selectedIndex = 0;
     document.getElementById("price").value = "";
+    event.preventDefault(); // Preventing the auto-refresh of the page after resetting the input fields [To avoid the display of the required field message pop-up]
 
     //Displaying notification
     const notification = showNotification("The book has been succesfully added!");
