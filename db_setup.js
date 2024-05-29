@@ -2,6 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('books.sqlite');
 
 db.serialize(() => {
+    db.run(`DROP TABLE IF EXISTS regBooks`);
     db.run(`CREATE TABLE IF NOT EXISTS regBooks (
         Id INTEGER PRIMARY KEY AUTOINCREMENT,
         Author VARCHAR(25) NOT NULL,
