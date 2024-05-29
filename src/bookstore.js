@@ -65,7 +65,7 @@ function searchBookToDatabase() {
             searchResultsBox.classList.remove("visible");
         }
     }).catch(error => {
-        showNotification("Failed to search books. Please try again!");
+        showNotification("Could not fetch data: Database not found!");
     });
 }
 
