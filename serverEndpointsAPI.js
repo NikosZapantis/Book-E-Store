@@ -1,3 +1,14 @@
+const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
+const bodyParser = require('body-parser');
+const cors = require('cors'); 
+
+const app = express();
+const db = new sqlite3.Database('books.sqlite');
+
+app.use(bodyParser.json());
+app.use(cors()); // For cross-origin requests
+
 //? Get function for search feature
 app.get('/regBooks/:keyword', (req, res) => {
     const keyword = req.params.keyword;
@@ -18,4 +29,9 @@ app.post('/regBooks', (req, res) => {
       }
       res.json({ message: 'Book added successfully', Id: this.lastID });
     });
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
