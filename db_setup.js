@@ -13,7 +13,7 @@ db.serialize(() => {
         Price REAL NOT NULL
     )`);
 
-    //? ChatGPT used to entry books with the same keyword for UAT purposes
+    //? ChatGPT used to entry books with the same keyword for UAT purposes [Frequent Keywords: Pirate / Animal / Death / Notebook / 1922]
     db.run(`INSERT INTO regBooks (Title, Author, Genre, Price) VALUES
     ('Pirates of the Caribbean', 'Johnny Depp', 'Action and Adventure', 12.99),
     ("The Pirate Hunter", "Richard Zacks", "Action and Adventure", 10.49),
