@@ -7,8 +7,8 @@
 
 //? Function for home button
 function redirectToMainPage() {
-    event.preventDefault(); //preventing from default actions of the browser
-    location.reload(); //reloading the page
+    event.preventDefault(); // preventing from default actions of the browser
+    location.reload(); // reloading the page
 }
 
 //? Function to add a new book to my SQLite db
@@ -24,7 +24,7 @@ function addBookToDatabase() {
     }
 
     //TODO: Checks for price to contain only numbers and [.]
-    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { //Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
+    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
         return;
     }
 
@@ -35,7 +35,7 @@ function addBookToDatabase() {
     document.getElementById("price").value = "";
     event.preventDefault(); // Preventing the auto-refresh of the page after resetting the input fields [To avoid the display of the required field message pop-up]
 
-    //Displaying notification
+    // Displaying notification
     showNotification("The book has been succesfully added!");
 }
 
