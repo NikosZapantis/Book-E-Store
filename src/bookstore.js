@@ -46,8 +46,8 @@ function searchBookToDatabase() {
     //? Checking if the user provided at least 3 characters as a keyword to search
     const currSearch = document.getElementById("searchInput").value.trim().toLowerCase();
 
-    if(currSearch.length < 3) {
-        showNotification("Please include at least 3 characters as a keyword!");
+    if(currSearch.length < 2) {
+        showNotification("Please include at least 2 characters as a keyword!");
         return;
     }
 
