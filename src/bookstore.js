@@ -1,9 +1,9 @@
 //! DATA ENTRIES FOR UAT
-const registerBooks = [
-    { title: "Pirates of the Caribbean", author: "Johnny Depp", genre: "Action and Adventure", price: 12.99},
-    { title: "The Pirate Hunter", author: "Nikos Zapantis", genre: "Mystery", price: 15.99},
-    { title: "Pirate Latitudes", author: "Nikos Zapantis", genre: "Horror", price: 39.99}
-];
+// const registerBooks = [
+//     { title: "Pirates of the Caribbean", author: "Johnny Depp", genre: "Action and Adventure", price: 12.99},
+//     { title: "The Pirate Hunter", author: "Nikos Zapantis", genre: "Mystery", price: 15.99},
+//     { title: "Pirate Latitudes", author: "Nikos Zapantis", genre: "Horror", price: 39.99}
+// ];
 
 //? Function for home button
 function redirectToMainPage() {
@@ -41,7 +41,9 @@ function addBookToDatabase() {
 
 //? Function to search by keyword to the database and display the results
 function searchBookToDatabase() {
-    //Checking if the user provided at least 3 characters as a keyword to search
+    event.preventDefault();
+
+    //? Checking if the user provided at least 3 characters as a keyword to search
     const currSearch = document.getElementById("searchInput").value.trim().toLowerCase();
 
     if(currSearch.length < 3) {
@@ -49,21 +51,22 @@ function searchBookToDatabase() {
         return;
     }
 
-    //? Basically I convert the keyword the user provides to Lower Case and I'm searching in the "db" the books that includes the specific keyword in their title
-    const searchResults = registerBooks.filter(registerBook => registerBook.title.toLowerCase().includes(currSearch));
-
-    //? Calling the function to display the books I found in the db
-    displaySearchResults(searchResults);
-
-    //? Making the results box visible so the user can check each book's informations
-    const searchResultsBox = document.getElementById("searchResultsBox");
-    if (searchResults.length > 0) {
-        searchResultsBox.classList.add("visible");
-    } else {
-        showNotification("No results found for the specific keyword.");
+    //? Fetching book data, searched by keyword, from the server that hosts the db and displaying the results [+ Handling possible error]
+    fetch(`http://localhost:3000/regBooks/${encodeURIComponent(currSearch)}`)
+    .then(response => response.json())
+    .then(searchResults => {
+        displaySearchResults(searchResults);
         
-        searchResultsBox.classList.remove("visible");
-    }
+        const searchResultsBox = document.getElementById("searchResultsBox");
+        if(searchResults.length > 0) {
+            searchResultsBox.classList.add("visible");
+        }else {
+            showNotification("No results found for the specific keyword.");
+            searchResultsBox.classList.remove("visible");
+        }
+    }).catch(error => {
+        showNotification("Failed to search books. Please try again!");
+    });
 }
 
 //? Function to display properly the data found by the search
@@ -74,10 +77,10 @@ function displaySearchResults(res) {
     res.forEach((registerBook, index) => {
         const registerBookItem = document.createElement("div");
         registerBookItem.classList.add("searchResultItem");
-        
+
         const bookTitle = document.createElement("span");
-        bookTitle.textContent = `${index + 1}. ${registerBook.title}`;
-        
+        bookTitle.textContent = `${index + 1}. ${registerBook.Title}`;
+
         //? Copy Button so the user can easily copy all the information of a specific book
         const copyBtn = document.createElement("button");
         copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
@@ -103,10 +106,10 @@ function displaySearchResults(res) {
 //? Function to copy specific's book details
 function copyBookDetailsToClipboard(registerBook) {
     const bookDetails = `
-        Title: ${registerBook.title}
-        Author: ${registerBook.author}
-        Genre: ${registerBook.genre}
-        Price: ${registerBook.price}€
+        Title: ${registerBook.Title}
+        Author: ${registerBook.Author}
+        Genre: ${registerBook.Genre}
+        Price: ${registerBook.Price}€
     `;
 
     navigator.clipboard.writeText(bookDetails).then(() => {
@@ -122,15 +125,15 @@ let currPopUp = null;
 let currInfoBtn = null;
 
 function toggleBookInfo(specificBook, infoBtn) {
-    //Checking if the user pressed the same infoBtn and the currently displayed pop-up is referenced to this infoBtn    
-    if(currInfoBtn === infoBtn && currPopUp) {
+    // Checking if the user pressed the same infoBtn and the currently displayed pop-up is referenced to this infoBtn    
+    if (currInfoBtn === infoBtn && currPopUp) {
         currPopUp.remove();
         currPopUp = null;
         currInfoBtn = null;
         return;
     }
 
-    if(currPopUp) {
+    if (currPopUp) {
         currPopUp.remove();
     }
 
@@ -138,10 +141,10 @@ function toggleBookInfo(specificBook, infoBtn) {
     popup.classList.add("popup");
     popup.innerHTML = `
         <div class="popup-content">
-            <h2>${specificBook.title}</h2>
-            <p><strong>Author:</strong> ${specificBook.author}</p>
-            <p><strong>Genre:</strong> ${specificBook.genre}</p>
-            <p><strong>Price:</strong> ${specificBook.price}€</p>
+            <h2>${specificBook.Title}</h2>
+            <p><strong>Author:</strong> ${specificBook.Author}</p>
+            <p><strong>Genre:</strong> ${specificBook.Genre}</p>
+            <p><strong>Price:</strong> ${specificBook.Price}€</p>
         </div>
     `;
 
