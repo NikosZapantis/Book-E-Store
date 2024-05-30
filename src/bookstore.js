@@ -241,7 +241,17 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('keydown', function(e) {
     //? Escape keypad press [return to home page]
     if(e.key === 'Escape') {
-        redirectToMainPage();
+        const searchResultsBox = document.getElementById('searchResultsBox');
+
+        if(searchResultsBox.classList.contains('visible')) {
+            searchResultsBox.classList.remove('visible');
+            
+            currPopUp.remove();
+            currPopUp = null;
+            currInfoBtn = null;
+        }else {
+            redirectToMainPage();
+        }
     }else if(e.key === 'Enter') {
         event.preventDefault();
 
