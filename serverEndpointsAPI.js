@@ -23,7 +23,7 @@ app.get('/regBooks/:keyword', (req, res) => {
 //? Post function for add feature
 app.post('/regBooks', (req, res) => {
     const { Title, Author, Genre, Price } = req.body;
-    db.run('INSERT INTO books (Title, Author, Genre, Price) VALUES (?, ?, ?, ?)', [Title, Author, Genre, Price], function(err) {
+    db.run('INSERT INTO regBooks (Title, Author, Genre, Price) VALUES (?, ?, ?, ?)', [Title, Author, Genre, Price], function(err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
