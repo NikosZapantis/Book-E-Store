@@ -18,15 +18,19 @@ function addBookToDatabase() {
     const currGenre = document.getElementById("genre").value.trim();
     const currPrice = document.getElementById("price").value.trim();
 
-    //TODO: Checks for input fields to be all filled-in
+    //? Checks for input fields to be all filled-in
     if(!currTitle || !currAuthor || !currGenre || !currPrice) {
         return;
     }
 
-    //TODO: Checks for price to contain only numbers and [.]
+    //? Checks for price to contain only numbers and [.]
     if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
         return;
     }
+
+    //TODO: Post the currBookInfo into my db
+    const currBookInfo = { Title: currTitle, Author: currAuthor, Genre: currGenre, Price: currPrice };
+    console.log(currBookInfo);
 
     //? Clearing input fields after the user submits the book
     document.getElementById("title").value = "";
@@ -55,7 +59,7 @@ function searchBookToDatabase() {
     fetch(`http://localhost:3000/regBooks/${encodeURIComponent(currSearch)}`)
     .then(response => response.json())
     .then(searchResults => {
-        displaySearchResults(searchResults);
+        displaySearchResults(searchResults, currSearch);
         
         const searchResultsBox = document.getElementById("searchResultsBox");
         if(searchResults.length > 0) {
@@ -70,9 +74,13 @@ function searchBookToDatabase() {
 }
 
 //? Function to display properly the data found by the search
-function displaySearchResults(res) {
+function displaySearchResults(res, currSearch) {
     const searchResultsContent = document.getElementById("searchResultsContent");
     searchResultsContent.innerHTML = ""; // Cleaning previous search results
+
+    const searchHeadline = document.createElement("h2");
+    searchHeadline.textContent = `Search results for: "${currSearch}"`;
+    searchResultsContent.appendChild(searchHeadline);
 
     res.forEach((registerBook, index) => {
         const registerBookItem = document.createElement("div");
