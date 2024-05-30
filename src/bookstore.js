@@ -28,9 +28,25 @@ function addBookToDatabase() {
         return;
     }
 
-    //TODO: Post the currBookInfo into my db
+    //? Making a json from the inputs the user provided and then passing it into my db
     const currBookInfo = { Title: currTitle, Author: currAuthor, Genre: currGenre, Price: currPrice };
     console.log(currBookInfo);
+
+    //? Posting the current book information into my db
+    fetch('http://localhost:3000/regBooks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(currBookInfo)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        showNotification("The book has been successfully added!");
+    }).catch((error) => {
+        console.error('Error: ', error);
+    });
 
     //? Clearing input fields after the user submits the book
     document.getElementById("title").value = "";
@@ -38,9 +54,6 @@ function addBookToDatabase() {
     document.getElementById("genre").selectedIndex = 0;
     document.getElementById("price").value = "";
     event.preventDefault(); // Preventing the auto-refresh of the page after resetting the input fields [To avoid the display of the required field message pop-up]
-
-    // Displaying notification
-    showNotification("The book has been succesfully added!");
 }
 
 //? Function to search by keyword to the database and display the results
