@@ -462,7 +462,7 @@ footer:hover p {
 
 @keyframes slideText {
     from {
-        left: -18%;
+        left: 0%;
     }to {
         left: 100%;
     }
