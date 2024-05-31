@@ -25,7 +25,7 @@ function addBookToDatabase() {
     }
 
     //? Checks for price to contain only numbers and [.]
-    if(isNaN(currPrice) || parseFloat(currPrice) < 0.0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
+    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
         showNotification("Please enter a valid price!");
         return;
     }
