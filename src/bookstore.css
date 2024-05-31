@@ -307,10 +307,11 @@ h1 {
 }
 
 .popup {
-    position: fixed;
+    position: absolute;
+    /* position: fixed;
     top: 25%;
     left: 70%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     outline: 1px solid #f99607;
