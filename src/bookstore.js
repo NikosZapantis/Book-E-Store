@@ -20,11 +20,13 @@ function addBookToDatabase() {
 
     //? Checks for input fields to be all filled-in
     if(!currTitle || !currAuthor || !currGenre || !currPrice) {
+        showNotification("All fields are required!");
         return;
     }
 
     //? Checks for price to contain only numbers and [.]
-    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
+    if(isNaN(currPrice) || parseFloat(currPrice) < 0.0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
+        showNotification("Please enter a valid price!");
         return;
     }
 
@@ -46,6 +48,7 @@ function addBookToDatabase() {
         showNotification("The book has been successfully added!");
     }).catch((error) => {
         console.error('Error: ', error);
+        showNotification("An error occurred while adding the book. Please try again.");
     });
 
     //? Clearing input fields after the user submits the book
@@ -82,7 +85,8 @@ function searchBookToDatabase() {
             searchResultsBox.classList.remove("visible");
         }
     }).catch(error => {
-        showNotification("Could not fetch data: Database not found!");
+        console.error('Error:', error);
+        showNotification("Could not fetch data: Database not found or server error!");
     });
 }
 
@@ -114,7 +118,7 @@ function displaySearchResults(res, currSearch) {
         const infoBtn = document.createElement("button");
         infoBtn.innerHTML = '<i class="fas fa-info-circle"></i>';
         infoBtn.classList.add("infoBtn");
-        infoBtn.addEventListener("click", () => toggleBookInfo(registerBook, infoBtn));
+        infoBtn.addEventListener("click", (event) => toggleBookInfo(registerBook, infoBtn, event));
 
         registerBookItem.appendChild(bookTitle);
         registerBookItem.appendChild(copyBtn);
@@ -145,7 +149,7 @@ function copyBookDetailsToClipboard(registerBook) {
 let currPopUp = null;
 let currInfoBtn = null;
 
-function toggleBookInfo(specificBook, infoBtn) {
+function toggleBookInfo(specificBook, infoBtn, event) {
     // Checking if the user pressed the same infoBtn and the currently displayed pop-up is referenced to this infoBtn    
     if (currInfoBtn === infoBtn && currPopUp) {
         currPopUp.remove();
@@ -174,6 +178,12 @@ function toggleBookInfo(specificBook, infoBtn) {
     //? Updating current popup and info button references
     currPopUp = popup;
     currInfoBtn = infoBtn;
+
+    //? Positioning the pop-up realtively to the cursor's position
+    const cursorX = event.clientX;
+    const cursorY = event.clientY;
+    popup.style.left = `${cursorX + 15}px`;
+    popup.style.top = `${cursorY - popup.offsetHeight - 15}px`;
 }
 
 //? Function to show the notification of the loading msg
