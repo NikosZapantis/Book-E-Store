@@ -1,10 +1,3 @@
-//! DATA ENTRIES FOR UAT
-// const registerBooks = [
-//     { title: "Pirates of the Caribbean", author: "Johnny Depp", genre: "Action and Adventure", price: 12.99},
-//     { title: "The Pirate Hunter", author: "Nikos Zapantis", genre: "Mystery", price: 15.99},
-//     { title: "Pirate Latitudes", author: "Nikos Zapantis", genre: "Horror", price: 39.99}
-// ];
-
 //? Function for home button
 function redirectToMainPage() {
     event.preventDefault(); // preventing from default actions of the browser
