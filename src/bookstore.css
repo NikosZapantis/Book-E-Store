@@ -338,7 +338,7 @@ h1 {
     top: 20px;
     right: -300px;
     background-color: #333;
-    color: rgb(255, 153, 0);
+    color: #f99607;
     padding: 10px;
     border: 2px solid #555;
     border-radius: 20px;
@@ -370,7 +370,7 @@ h1 {
     height: 5px;
     width: 2px;
     background-color: #f99607;
-    transition: width 4s linear;
+    transition: width 4.2s linear;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
