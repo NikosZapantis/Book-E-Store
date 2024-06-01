@@ -29,6 +29,11 @@ function addBookToDatabase() {
         showNotification("Please enter a valid price!");
         return;
     }
+    const validPriceRegex = /^\d+(\.\d{1,2})?$/;
+    if(!validPriceRegex.test(currPrice)) {
+        showNotification("Only 2 digits after floating point are acceptable.");
+        return;
+    }
 
     //? Making a json from the inputs the user provided and then passing it into my db
     const currBookInfo = { Title: currTitle, Author: currAuthor, Genre: currGenre, Price: currPrice };
