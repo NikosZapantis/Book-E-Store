@@ -195,14 +195,20 @@ function toggleBookInfo(specificBook, infoBtn, event) {
 function showNotification(msg) {
     const notification = document.createElement('div');
     notification.className = 'notification';
-    notification.innerHTML = `<span class="close">&times;</span>${msg}`;
+    notification.innerHTML = `<span class="close">&times;</span>${msg}<div class="progressBar"></div>`;
     document.body.appendChild(notification);
     
     setTimeout(() => {
         notification.style.right = '20px';
     }, 100);
 
-    setTimeout(() => hideNotification(notification), 4000);
+    // Setting up the progress bar
+    const progressBar = notification.querySelector('.progressBar');
+    setTimeout(() => {
+        progressBar.style.width = '96%';
+    }, 500); // Delay until the progressBar starts
+
+    setTimeout(() => hideNotification(notification), 5000);
     return notification;
 }
 
