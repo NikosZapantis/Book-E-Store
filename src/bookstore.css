@@ -363,6 +363,18 @@ h1 {
     color: black;
 }
 
+.notification .progressBar {
+    position: absolute;
+    bottom: 0;
+    left: 2%;
+    height: 5px;
+    width: 2px;
+    background-color: #f99607;
+    transition: width 4s linear;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 /* Copy Button Customization */
 .copyBtn {
     margin-left: 10px;
