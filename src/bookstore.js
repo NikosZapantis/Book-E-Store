@@ -6,31 +6,31 @@ function redirectToMainPage() {
 
 //? Function to enable or disable properly the input fields
 function toggleInputStatus() {
-    const title = document.getElementById('title');
-    const author = document.getElementById('author');
-    const genre = document.getElementById('genre');
-    const price = document.getElementById('price');
+    const titleField = document.getElementById('title');
+    const authorField = document.getElementById('author');
+    const genreField = document.getElementById('genre');
+    const priceField = document.getElementById('price');
 
-    if (title.value.length > 0) {
-        author.disabled = false;
+    if (titleField.value.length > 0) {
+        authorField.disabled = false;
     } else {
-        author.disabled = true;
-        genre.disabled = true;
-        price.disabled = true;
+        authorField.disabled = true;
+        genreField.disabled = true;
+        priceField.disabled = true;
         return;
     }
 
-    if (author.value.length > 0) {
-        genre.disabled = false;
+    if (authorField.value.length > 0) {
+        genreField.disabled = false;
     } else {
-        genre.disabled = true;
-        price.disabled = true;
+        genreField.disabled = true;
+        priceField.disabled = true;
     }
 
-    if (genre.value !== "" && author.value.length > 0) {
-        price.disabled = false;
+    if (genreField.value !== "" && authorField.value.length > 0) {
+        priceField.disabled = false;
     } else {
-        price.disabled = true;
+        priceField.disabled = true;
     }
 }
 
