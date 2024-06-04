@@ -17,6 +17,7 @@ function toggleInputStatus() {
         author.disabled = true;
         genre.disabled = true;
         price.disabled = true;
+        return;
     }
 
     if (author.value.length > 0) {
@@ -26,7 +27,7 @@ function toggleInputStatus() {
         price.disabled = true;
     }
 
-    if (genre.value !== "") {
+    if (genre.value !== "" && author.value.length > 0) {
         price.disabled = false;
     } else {
         price.disabled = true;
