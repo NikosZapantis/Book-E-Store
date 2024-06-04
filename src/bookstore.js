@@ -4,6 +4,35 @@ function redirectToMainPage() {
     location.reload(); // reloading the page
 }
 
+//? Function to enable or disable properly the input fields
+function toggleInputStatus() {
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const genre = document.getElementById('genre');
+    const price = document.getElementById('price');
+
+    if (title.value.length > 0) {
+        author.disabled = false;
+    } else {
+        author.disabled = true;
+        genre.disabled = true;
+        price.disabled = true;
+    }
+
+    if (author.value.length > 0) {
+        genre.disabled = false;
+    } else {
+        genre.disabled = true;
+        price.disabled = true;
+    }
+
+    if (genre.value !== "") {
+        price.disabled = false;
+    } else {
+        price.disabled = true;
+    }
+}
+
 //? Function to add a new book to my SQLite db
 function addBookToDatabase() {
     const currTitle = document.getElementById("title").value.trim();
@@ -17,15 +46,38 @@ function addBookToDatabase() {
         return;
     }
 
-    //? Checks for price to contain only numbers and [.]
-    if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
-        showNotification("Please enter a valid price!");
+    //? Checks for title and author [No symbols allowed]
+    const acceptableTitleAuthorRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    if(acceptableTitleAuthorRegex.test(currTitle) || acceptableTitleAuthorRegex.test(currAuthor)) {
+        showNotification("Title and Author must not include any symbols.");
+        event.preventDefault();
         return;
     }
-    const validPriceRegex = /^\d+(\.\d{1,2})?$/;
-    if(!validPriceRegex.test(currPrice)) {
-        showNotification("Only 2 digits after floating point are acceptable.");
+
+    //? Checks for max characters on title and author [Acceptable limits]
+    if(currTitle.length > 100) {
+        showNotification("Title must be a maximum of 100 characters.");
+        event.preventDefault();
         return;
+    }
+    if(currAuthor.length > 30) {
+        showNotification("Author must be a maximum of 30 characters.");
+        event.preventDefault();
+        return;
+    }
+
+    //? Checks for price input field [validations]
+    if(currTitle && currAuthor && currGenre) {
+        if(isNaN(currPrice) || parseFloat(currPrice) <= 0) { // Checking if the current price provided is a number and if it's not or the user provided a negative number it notifies properly
+            showNotification("Please enter a valid price!");
+            return;
+        }else {
+            const validPriceRegex = /^\d+(\.\d{1,2})?$/;
+            if(!validPriceRegex.test(currPrice)) { // Checking if the number provided as price has maximum 2 digits after the floating point
+                showNotification("Only 2 digits after floating point are acceptable.");
+                return;
+            }
+        }
     }
 
     //? Making a json from the inputs the user provided and then passing it into my db
@@ -54,6 +106,11 @@ function addBookToDatabase() {
     document.getElementById("author").value = "";
     document.getElementById("genre").selectedIndex = 0;
     document.getElementById("price").value = "";
+
+    //? Disabling all the input fields again
+    document.getElementById("author").disabled = true;
+    document.getElementById("genre").disabled = true;
+    document.getElementById("price").disabled = true;
     event.preventDefault(); // Preventing the auto-refresh of the page after resetting the input fields [To avoid the display of the required field message pop-up]
 }
 
@@ -185,6 +242,8 @@ function toggleBookInfo(specificBook, infoBtn, event) {
 }
 
 //? Function to show the notification of the loading msg
+let notifDur = 5000;
+
 function showNotification(msg) {
     const notification = document.createElement('div');
     notification.className = 'notification';
@@ -193,15 +252,15 @@ function showNotification(msg) {
     
     setTimeout(() => {
         notification.style.right = '20px';
-    }, 100);
+    }, notifDur/500);
 
     // Setting up the progress bar
     const progressBar = notification.querySelector('.progressBar');
     setTimeout(() => {
         progressBar.style.width = '96%';
-    }, 500); // Delay until the progressBar starts
+    }, notifDur/100); // Delay until the progressBar starts
 
-    setTimeout(() => hideNotification(notification), 5000);
+    setTimeout(() => hideNotification(notification), notifDur);
     return notification;
 }
 
@@ -211,7 +270,7 @@ function hideNotification(notification) {
 
     setTimeout(() => {
         notification.remove();
-    }, 500); //Waiting for the animation to complete before removing
+    }, notifDur/100); //Waiting for the animation to complete before removing
 }
 
 //? --------------------------- EVENT LISTENERS ---------------------------
