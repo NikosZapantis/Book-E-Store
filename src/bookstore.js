@@ -236,11 +236,10 @@ function toggleBookInfo(specificBook, infoBtn, event) {
     currInfoBtn = infoBtn;
 
     //? Positioning the pop-up realtively to the cursor's position
-    //TODO: Check if the title of the book is greater than 50 characters to display the pop-up left of the cursor
     const cursorX = event.clientX;
     const cursorY = event.clientY;
     const standardDiff = 15;
-    if(specificBook.Title.length <= 50) {
+    if(specificBook.Title.length <= 50) { // Checking title's characters to position proper the pop-up
         popup.style.left = `${cursorX + standardDiff}px`;
         popup.style.top = `${cursorY - popup.offsetHeight - standardDiff}px`;
     }else {
