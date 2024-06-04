@@ -236,10 +236,17 @@ function toggleBookInfo(specificBook, infoBtn, event) {
     currInfoBtn = infoBtn;
 
     //? Positioning the pop-up realtively to the cursor's position
+    //TODO: Check if the title of the book is greater than 50 characters to display the pop-up left of the cursor
     const cursorX = event.clientX;
     const cursorY = event.clientY;
-    popup.style.left = `${cursorX + 15}px`;
-    popup.style.top = `${cursorY - popup.offsetHeight - 15}px`;
+    const standardDiff = 15;
+    if(specificBook.Title.length <= 50) {
+        popup.style.left = `${cursorX + standardDiff}px`;
+        popup.style.top = `${cursorY - popup.offsetHeight - standardDiff}px`;
+    }else {
+        popup.style.right = `${cursorX - popup.offsetWidth - standardDiff}px`;
+        popup.style.top = `${cursorY - popup.offsetHeight - standardDiff}px`;
+    }
 }
 
 //? Function to show the notification of the loading msg
