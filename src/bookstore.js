@@ -208,7 +208,7 @@ function copyBookDetailsToClipboard(registerBook) {
 }
 
 //? Function to display the specific's book information
-//? ChatGpt & StackOverflow helped here to struct correct the logic behind of closing the pop-up when the same infoBtn was pressed twice
+//? ChatGpt & StackOverflow helped here to struct correctly the logic behind of closing the pop-up when the same infoBtn was pressed twice
 let currPopUp = null;
 let currInfoBtn = null;
 
@@ -242,16 +242,20 @@ function toggleBookInfo(specificBook, infoBtn, event) {
     currPopUp = popup;
     currInfoBtn = infoBtn;
 
-    //? Positioning the pop-up realtively to the cursor's position
+    //? Positioning the pop-up relatively to the cursor's position
     const cursorX = event.clientX;
     const cursorY = event.clientY;
     const standardDiff = 15;
+
     if(specificBook.Title.length <= 50) { // Checking title's characters to position proper the pop-up
         popup.style.left = `${cursorX + standardDiff}px`;
         popup.style.top = `${cursorY - popup.offsetHeight - standardDiff}px`;
     }else {
-        popup.style.right = `${cursorX - popup.offsetWidth - standardDiff}px`;
-        popup.style.top = `${cursorY - popup.offsetHeight - standardDiff}px`;
+        const currPopUpWidth = popup.offsetWidth;
+        const currPopUpHeight = popup.offsetHeight;
+
+        popup.style.left = `${cursorX - currPopUpWidth - standardDiff}px`;
+        popup.style.top = `${cursorY - currPopUpHeight - standardDiff}px`;
     }
 }
 
