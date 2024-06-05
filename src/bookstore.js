@@ -11,27 +11,32 @@ function toggleInputStatus() {
     const genreField = document.getElementById('genre');
     const priceField = document.getElementById('price');
 
-    if (titleField.value.length > 0) {
-        authorField.disabled = false;
-    } else {
-        authorField.disabled = true;
-        genreField.disabled = true;
-        priceField.disabled = true;
-        return;
-    }
+    //? Optimized algorithm
+    authorField.disabled = (titleField.value.length === 0);
+    genreField.disabled = (titleField.value.length === 0 || authorField.value.length === 0);
+    priceField.disabled = (titleField.value.length === 0 || authorField.value.length === 0 || genreField.value.length === 0)
 
-    if (authorField.value.length > 0) {
-        genreField.disabled = false;
-    } else {
-        genreField.disabled = true;
-        priceField.disabled = true;
-    }
+    // if (titleField.value.length > 0) {
+    //     authorField.disabled = false;
+    // } else {
+    //     authorField.disabled = true;
+    //     genreField.disabled = true;
+    //     priceField.disabled = true;
+    //     return;
+    // }
 
-    if (genreField.value !== "" && authorField.value.length > 0) {
-        priceField.disabled = false;
-    } else {
-        priceField.disabled = true;
-    }
+    // if (authorField.value.length > 0) {
+    //     genreField.disabled = false;
+    // } else {
+    //     genreField.disabled = true;
+    //     priceField.disabled = true;
+    // }
+
+    // if (genreField.value !== "" && authorField.value.length > 0) {
+    //     priceField.disabled = false;
+    // } else {
+    //     priceField.disabled = true;
+    // }
 }
 
 //? Function to add a new book to my SQLite db
