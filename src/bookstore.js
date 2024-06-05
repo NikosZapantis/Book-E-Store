@@ -54,6 +54,13 @@ function addBookToDatabase() {
         event.preventDefault();
         return;
     }
+    //? External checks for author [No numbers allowed]
+    const acceptableAuthorExternalRegex = /\d/;
+    if(acceptableAuthorExternalRegex.test(currAuthor)) {
+        showNotification("Author must not include numbers.");
+        event.preventDefault();
+        return;
+    }
 
     //? Checks for max characters on title and author [Acceptable limits]
     if(currTitle.length > 100) {
