@@ -1,3 +1,34 @@
+// Books to initialize
+const initialBooks = [
+    { Title: 'Pirates of the Caribbean', Author: 'Johnny Depp', Genre: 'Action and Adventure', Price: 12.99 },
+    { Title: 'The Pirate Hunter', Author: 'Richard Zacks', Genre: 'Action and Adventure', Price: 10.49 },
+    { Title: 'Pirate Latitudes', Author: 'Michael Crichton', Genre: 'Action and Adventure', Price: 9.99 },
+    { Title: 'Dune', Author: 'Frank Herbert', Genre: 'Science fiction', Price: 9.99 },
+    { Title: 'The Hitchhiker\'s Guide to the Galaxy', Author: 'Douglas Adams', Genre: 'Science fiction', Price: 8.49 },
+    { Title: 'Catch-22', Author: 'Joseph Heller', Genre: 'Satire', Price: 7.99 },
+    { Title: 'Animal Farm', Author: 'George Orwell', Genre: 'Satire', Price: 6.99 },
+    { Title: 'Animal Dreams', Author: 'Barbara Kingsolver', Genre: 'Drama', Price: 9.99 },
+    { Title: 'Hamlet', Author: 'William Shakespeare', Genre: 'Drama', Price: 5.99 },
+    { Title: 'Death of a Salesman', Author: 'Arthur Miller', Genre: 'Drama', Price: 6.49 },
+    { Title: 'The Death Cure', Author: 'James Dashner', Genre: 'Science fiction', Price: 8.99 },
+    { Title: 'Death on the Nile', Author: 'Agatha Christie', Genre: 'Mystery', Price: 7.99 },
+    { Title: 'Death Note', Author: 'Tsugumi Ohba', Genre: 'Mystery', Price: 10.99 },
+    { Title: 'The Hobbit', Author: 'J.R.R. Tolkien', Genre: 'Action and Adventure', Price: 10.99 },
+    { Title: 'Treasure Island', Author: 'Robert Louis Stevenson', Genre: 'Action and Adventure', Price: 8.99 },
+    { Title: 'Pride and Prejudice', Author: 'Jane Austen', Genre: 'Romance', Price: 7.49 },
+    { Title: 'The Notebook', Author: 'Nicholas Sparks', Genre: 'Romance', Price: 8.99 },
+    { Title: 'The Lost Notebook', Author: 'Agatha Christie', Genre: 'Mystery', Price: 10.49 },
+    { Title: 'The Notebook of Doom', Author: 'Troy Cummings', Genre: 'Horror', Price: 8.49 },
+    { Title: 'The Notebook Trilogy', Author: 'Nicholas Sparks', Genre: 'Romance', Price: 12.99 },
+    { Title: 'The Haunted Notebook', Author: 'R.L. Stine', Genre: 'Horror', Price: 9.99 },
+    { Title: 'The Da Vinci Code', Author: 'Dan Brown', Genre: 'Mystery', Price: 9.49 },
+    { Title: 'Gone Girl', Author: 'Gillian Flynn', Genre: 'Mystery', Price: 10.99 },
+    { Title: 'It', Author: 'Stephen King', Genre: 'Horror', Price: 11.99 },
+    { Title: 'Dracula', Author: 'Bram Stoker', Genre: 'Horror', Price: 7.99 },
+    { Title: '1922', Author: 'Stephen King', Genre: 'Horror', Price: 17.99 },
+    { Title: '1922: Scenes from a Turbulent Year', Author: 'Nick Rennison', Genre: 'History', Price: 12.49 }
+];
+
 //? Function for home button
 function redirectToMainPage() {
     event.preventDefault(); // preventing from default actions of the browser
@@ -15,6 +46,11 @@ function toggleInputStatus() {
     authorField.disabled = (titleField.value.length === 0);
     genreField.disabled = (titleField.value.length === 0 || authorField.value.length === 0);
     priceField.disabled = (titleField.value.length === 0 || authorField.value.length === 0 || genreField.value.length === 0);
+}
+
+//? Initialize localStorage array if it doesn't exist
+if(!localStorage.getItem('books')) {
+    localStorage.setItem('books', JSON.stringify(initialBooks));
 }
 
 //? Function to add a new book to my SQLite db
@@ -75,22 +111,29 @@ function addBookToDatabase() {
     const currBookInfo = { Title: currTitle, Author: currAuthor, Genre: currGenre, Price: currPrice };
     console.log(currBookInfo);
 
-    //? Posting the current book information into my db
-    fetch('http://localhost:3000/regBooks', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(currBookInfo)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        showNotification("The book has been successfully added!");
-    }).catch((error) => {
-        console.error('Error: ', error);
-        showNotification("An error occurred while adding the book. Please try again.");
-    });
+    let books = JSON.parse(localStorage.getItem('books'));
+    books.push(currBookInfo);
+    localStorage.setItem('books', JSON.stringify(books));
+    showNotification("The book has been successfully added!");
+
+    //? Implementation for local database existance
+        // //? Posting the current book information into my db
+        // fetch('http://localhost:3000/regBooks', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(currBookInfo)
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data);
+        //     showNotification("The book has been successfully added!");
+        // }).catch((error) => {
+        //     console.error('Error: ', error);
+        //     showNotification("An error occurred while adding the book. Please try again.");
+        // });
+
 
     //? Clearing input fields after the user submits the book
     document.getElementById("title").value = "";
@@ -117,23 +160,41 @@ function searchBookToDatabase() {
         return;
     }
 
-    //? Fetching book data, searched by keyword, from the server that hosts the db and displaying the results [+ Handling possible error]
-    fetch(`http://localhost:3000/regBooks/${encodeURIComponent(currSearch)}`)
-    .then(response => response.json())
-    .then(searchResults => {
-        displaySearchResults(searchResults, currSearch);
-        
-        const searchResultsBox = document.getElementById("searchResultsBox");
-        if(searchResults.length > 0) {
-            searchResultsBox.classList.add("visible");
-        }else {
-            showNotification("No results found for the specific keyword.");
-            searchResultsBox.classList.remove("visible");
-        }
-    }).catch(error => {
-        console.error('Error:', error);
-        showNotification("Could not fetch data: Database not found or server error!");
-    });
+    const books = JSON.parse(localStorage.getItem('books'));
+    
+    // Filtering books based on the search keyword the user provided
+    const searchResults = books.filter(book => 
+        book.Title.toLowerCase().includes(currSearch)
+    );
+
+    displaySearchResults(searchResults, currSearch);
+
+    const searchResultsBox = document.getElementById("searchResultsBox");
+    if(searchResults.length > 0) {
+        searchResultsBox.classList.add("visible");
+    } else {
+        showNotification("No results found for the specific keyword.");
+        searchResultsBox.classList.remove("visible");
+    }
+
+    //? Implementation for local database existance
+        // //? Fetching book data, searched by keyword, from the server that hosts the db and displaying the results [+ Handling possible error]
+        // fetch(`http://localhost:3000/regBooks/${encodeURIComponent(currSearch)}`)
+        // .then(response => response.json())
+        // .then(searchResults => {
+        //     displaySearchResults(searchResults, currSearch);
+            
+        //     const searchResultsBox = document.getElementById("searchResultsBox");
+        //     if(searchResults.length > 0) {
+        //         searchResultsBox.classList.add("visible");
+        //     }else {
+        //         showNotification("No results found for the specific keyword.");
+        //         searchResultsBox.classList.remove("visible");
+        //     }
+        // }).catch(error => {
+        //     console.error('Error:', error);
+        //     showNotification("Could not fetch data: Database not found or server error!");
+        // });
 }
 
 //? Function to display properly the data found by the search
